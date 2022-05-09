@@ -12,6 +12,7 @@ import { ScreenshotButton } from "../ScreenshotButton";
 import { feedbackTypes } from "../../utils/feedbackTypes";
 import { Copyright } from "../Copyright";
 import { captureScreen } from "react-native-view-shot";
+import { api } from "../../libs/api";
 
 interface Props {
   feedbackType: FeedbackType;
@@ -27,6 +28,7 @@ export function Form({
   const feedbackTypeInfo = feedbackTypes[feedbackType];
 
   const [screenshot, setScreenshot] = useState<string | null>(null);
+  const [comment, setComment] = useState("");
   const [isSendingFeedback, setIsSendingFeedback] = useState(false);
 
   function handleScreenshot() {
@@ -42,12 +44,17 @@ export function Form({
     setScreenshot(null);
   }
 
-  function handleSendFeedback() {
+  async function handleSendFeedback() {
     if (isSendingFeedback) return;
 
     setIsSendingFeedback(true);
 
     try {
+      await api.post("/feedbacks", {
+        type: feedbackType,
+        screenshot,
+        comment,
+      });
     } catch (error) {
       console.log(error);
     } finally {
@@ -78,6 +85,7 @@ export function Form({
         placeholder="Algo não está funcionando bem? Queremos corrigir. Conte com detalhes o que está acontecendo..."
         placeholderTextColor={theme.colors.text_secondary}
         autoCorrect={false}
+        onChangeText={setComment}
       />
 
       <View style={styles.footer}>
