@@ -4,11 +4,11 @@ import { theme } from "../../theme";
 export const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 24,
-    alignItems: "center"
+    alignItems: "center",
   },
   header: {
     flexDirection: "row",
-    marginVertical: 16
+    marginVertical: 16,
   },
   titleContainer: {
     flex: 1,
@@ -16,17 +16,17 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
 
-    paddingRight: 24
+    paddingRight: 24,
   },
   titleText: {
     fontSize: 20,
     color: theme.colors.text_primary,
-    fontFamily: theme.fonts.medium
+    fontFamily: theme.fonts.medium,
   },
   image: {
     width: 24,
     height: 24,
-    marginRight: 8
+    marginRight: 8,
   },
   input: {
     height: 112,
@@ -39,10 +39,10 @@ export const styles = StyleSheet.create({
     borderColor: theme.colors.stroke,
 
     color: theme.colors.text_primary,
-    fontFamily: theme.fonts.regular
+    fontFamily: theme.fonts.regular,
   },
   footer: {
     flexDirection: "row",
-    marginBottom: 16
-  }
+    marginBottom: 16,
+  },
 });
