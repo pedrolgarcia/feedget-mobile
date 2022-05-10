@@ -23,7 +23,7 @@ interface Props {
 export function Form({
   feedbackType,
   onFeedbackCanceled,
-  onFeedbackSent,
+  onFeedbackSent
 }: Props) {
   const feedbackTypeInfo = feedbackTypes[feedbackType];
 
@@ -35,8 +35,11 @@ export function Form({
     captureScreen({
       format: "jpg",
       quality: 0.8,
+      result: "base64"
     })
-      .then((uri) => setScreenshot(uri))
+      .then((uri) => {
+        setScreenshot(`data:image/png;base64,${uri}`);
+      })
       .catch((error) => console.log(error));
   }
 
@@ -53,8 +56,10 @@ export function Form({
       await api.post("/feedbacks", {
         type: feedbackType,
         screenshot,
-        comment,
+        comment
       });
+
+      onFeedbackSent();
     } catch (error) {
       console.log(error);
     } finally {

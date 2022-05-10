@@ -19,7 +19,7 @@ export function Option({ title, image, ...rest }: Props) {
     <TouchableOpacity style={styles.container} {...rest}>
       <Image source={image} style={styles.image} />
 
-      <Text style={styles.title}>Title</Text>
+      <Text style={styles.title}>{title}</Text>
     </TouchableOpacity>
   );
 }
